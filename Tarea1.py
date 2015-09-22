@@ -24,7 +24,7 @@ e = a[:,1]          # obtiene e de a
 
 w1 = 10. * w          # w1 = Wavelength (Angstrom)
 e1 = e * ((10 ** (7)) * (10. ** (-4.)) * (10 ** (-1)))  # e1 = Power (erg*s-1*cm-2*A-1)
-
+'''
 plt.xscale('log')
 plt.yscale('log')
 #plt.plot(np.log(w1),np.log(e1))  #Ln-Ln
@@ -34,14 +34,23 @@ plt.title('Flujo vs $\lambda$ en escala Log-Log')
 plt.xlabel('Longitud de Onda ($\lambda$) $[\AA]$')
 plt.ylabel('Flujo $[erg \ s^{-1} cm^{-2} \AA^{-1}]$')
 plt.show()
+'''
 
 #Nota: El flujo es la integral de la Potencia en todo lambda (?)
 #######################################################
 #Parte de calcular la luminosidad
 
+#integral usando metodo del trapecio
+#int f(x) dx = dx/2 * (f(xo) + f(xo + dx))
+I = 0   #valor de la integral que se obtendra
+for i in range(n-1):
+    f1 = e1[i]
+    f2 = e1[i+1]
+    x1 = w1[i]
+    x2 = w1[i+1]
+    I += ( (x2-x1) / 2.) * (f1 + f2)
 
-
-
+print I
 #######################################################
 #Parte funcion de Plank
 
