@@ -25,11 +25,14 @@ e = a[:,1]          # obtiene e de a
 w1 = 10. * w          # w1 = Wavelength (Angstrom)
 e1 = e * ((10 ** (7)) * (10. ** (-4.)) * (10 ** (-1)))  # e1 = Power (erg*s-1*cm-2*A-1)
 
+plt.xscale('log')
+plt.yscale('log')
 #plt.plot(np.log(w1),np.log(e1))  #Ln-Ln
-plt.plot(np.log10(w1),np.log10(e1))  #Log-Log
-plt.title('$\lambda$ vs Potencia en escala Log-Log')
+#plt.plot(np.log10(w1),np.log10(e1))  #Log-Log
+plt.plot(w1,e1)
+plt.title('Flujo vs $\lambda$ en escala Log-Log')
 plt.xlabel('Longitud de Onda ($\lambda$) $[\AA]$')
-plt.ylabel('Potencia  $[erg \ s^{-1} cm^{-2} \AA^{-1}]$')
+plt.ylabel('Flujo $[erg \ s^{-1} cm^{-2} \AA^{-1}]$')
 plt.show()
 
 #Nota: El flujo es la integral de la Potencia en todo lambda (?)
