@@ -22,5 +22,5 @@ w = a[:,0]
 e = a[:,1]
 
 
-print w
-print e
+plt.plot(np.log(w),np.log(e))
+plt.show()
