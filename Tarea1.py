@@ -21,15 +21,11 @@ e = np.zeros(n)     # e = Power (W*m-2*nm-1)
 w = a[:,0]
 e = a[:,1]
 
-w1 = 10. * w          # w = Wavelength (Angstrom)
-e1 = e * ((10 ** (7)) * (10. ** (-4.)) * (10 ** (-1)))  # e = Power (erg*s-1*cm-2*A-1)
+w1 = 10. * w          # w1 = Wavelength (Angstrom)
+e1 = e * ((10 ** (7)) * (10. ** (-4.)) * (10 ** (-1)))  # e1 = Power (erg*s-1*cm-2*A-1)
 
-'''
-Arreglar los textos en modo latex
 
 plt.plot(np.log(w1),np.log(e1))
-plt.xlabel('Longitud de Onda [\AA]')
-plt.ylabel('Potencia [erg s^{-1} cm^{-2} \AA^{-1}')
+plt.xlabel('Longitud de Onda $[\AA]$')
+plt.ylabel('Potencia $[erg \ s^{-1} cm^{-2} \AA^{-1}]$')
 plt.show()
-
-'''
