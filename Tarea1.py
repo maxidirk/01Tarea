@@ -1,3 +1,4 @@
+#######################################################
 '''
 Metodos Numericos para la Ciencia e Ingenieria FI3104
 Tarea01
@@ -24,8 +25,9 @@ e = a[:,1]
 w1 = 10. * w          # w1 = Wavelength (Angstrom)
 e1 = e * ((10 ** (7)) * (10. ** (-4.)) * (10 ** (-1)))  # e1 = Power (erg*s-1*cm-2*A-1)
 
-
 plt.plot(np.log(w1),np.log(e1))
 plt.xlabel('Longitud de Onda $[\AA]$')
 plt.ylabel('Potencia $[erg \ s^{-1} cm^{-2} \AA^{-1}]$')
 plt.show()
+
+#######################################################
