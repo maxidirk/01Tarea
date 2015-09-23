@@ -11,7 +11,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from astropy import constants as ac
 from astropy import units as au
-import scipy as sci
+from scipy import integrate as sciI
 
 #######################################################
 
@@ -98,7 +98,13 @@ R = np.sqrt(L/(4.*np.pi*P))
 
 print 'Radio del Sol = ', R
 
-
-
-
 #######################################################
+#scipy.integrate.trapz y scipy.integrate.quad
+
+Ft_sci_trapz = sciI.trapz(e1, x=w1) * au.erg / (au.s*(au.cm**2))
+fiP_sci_trapz = sciI.quad(f_Ip, 0, np.pi)
+#Ft_sci_quad = scipy.integrate.trapz
+print 'Flujo Recibido Calculado por scipy = ', Ft_sci_trapz
+#print 'Flujo Emitido Calculado por scipy = ', fiP_sci_trapz
+print 'Flujo Emitido Calculado por scipy = ', fiP_sci_trapz
+print fiP_sci_trapz - Ip
