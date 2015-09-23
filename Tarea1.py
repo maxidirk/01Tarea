@@ -101,12 +101,11 @@ print 'Radio del Sol = ', R
 #######################################################
 #scipy.integrate.trapz y scipy.integrate.quad
 
-#f_Ipx = lambda x: (np.tan(x)**3/(np.exp(np.tan(x))-1)) *(1/(np.cos(x)**2))
 f_Ipx2 = lambda x: (x**3/(np.exp(x)-1))
+
 Ft_sci_trapz = sciI.trapz(e1, x=w1) * au.erg / (au.s*(au.cm**2))
-#fiP_sci_trapz = Cp*sciI.quad(f_Ipx, 0, np.pi)
-fiP_sci_trapz = Cp*sciI.quad(f_Ipx2, 0, np.inf)[0]
-#Ft_sci_quad = scipy.integrate.trapz
+fiP_sci_trapz = Cp*sciI.quad(f_Ipx2, 0, 100)[0]
+
 print 'Flujo Recibido Calculado por scipy = ', Ft_sci_trapz
-#print 'Flujo Emitido Calculado por scipy = ', fiP_sci_trapz
+
 print 'Flujo Emitido Calculado por scipy = ', fiP_sci_trapz
