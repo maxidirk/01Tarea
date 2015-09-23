@@ -77,11 +77,11 @@ def f_Ip (x):
     return (np.tan(x)**3/(np.exp(np.tan(x))-1)) *(1/(np.cos(x)**2))
 
 tol = 0.001
-paso= 0.00001
+paso= 0.001
 x = np.arange(tol , np.pi/2. -tol  , paso)
 Ip = 0
 for i in range(len(x)-1):
-    Ip += ((x[i+1]-x[i]))*(f_Ip(x[i+1])+f_Ip(x[i])/2.)
+    Ip += ((x[i+1]-x[i]))*(f_Ip(x[i+1])+f_Ip(x[i]))/2.
 
 P = Cp * Ip
 real= (np.pi**4)/15.
