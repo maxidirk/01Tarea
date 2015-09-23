@@ -30,9 +30,9 @@ plt.yscale('log')
 #plt.plot(np.log(w1),np.log(e1))  #Ln-Ln
 #plt.plot(np.log10(w1),np.log10(e1))  #Log-Log
 plt.plot(w1,e1)
-plt.title('Flujo vs $\lambda$ en escala Log-Log')
+plt.title('Flujo por $\lambda$ vs $\lambda$ en escala Log-Log')
 plt.xlabel('Longitud de Onda ($\lambda$) $[\AA]$')
-plt.ylabel('Flujo $[erg \ s^{-1} cm^{-2} \AA^{-1}]$')
+plt.ylabel('Flujo por $\lambda$ $[erg \ s^{-1} cm^{-2} \AA^{-1}]$')
 plt.show()
 '''
 
@@ -49,7 +49,12 @@ Ft = 0   #Flujo total a obtener
 for i in range(n-1):
     Ft += ( (w1[i+1]-w1[i]) / 2.) * (e1[i] + e1[i+1])
 
-print Ft #en cgs
+print Ft #Flujo total en cgs
+
+R = 1.5 * (10**13) # Distancia aproximada al Sol en cm
+L = 4. * np.pi * (R**2) * Ft  # LUminosidad
+
+print L
 
 
 
