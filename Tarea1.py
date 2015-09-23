@@ -49,9 +49,12 @@ for i in range(n-1):
     Ft += ( (w1[i+1]-w1[i]) / 2.) * (e1[i] + e1[i+1])
 
 Ft = Ft * au.erg / (au.s*(au.cm**2))
-print 'Flujo Total = ', Ft #Flujo recibido total en cgs
+print 'Flujo Total Recibido= ', Ft #Flujo recibido total en cgs
 
-d = 1.5 * (10**13)   # Distancia aproximada al Sol en cm
+'''
+Usando L=2*pi*d^2*Ft
+'''
+d = 1.5 * (10**13) * au.cm   # Distancia aproximada al Sol en cm
 L = 4. * np.pi * (d**2) * Ft   # Luminosidad total en cgs
 
 print 'Luminosidad Total = ', L
@@ -82,17 +85,18 @@ paso= 0.001   #Tamanho de los intervalos a sumar
 x = np.arange(tol , np.pi/2. -tol  , paso) #arreglo con los argumentos a usar
 
 for i in range(len(x)-1):
-    Ip += ((x[i+1]-x[i]))*(f_Ip(x[i+1])+f_Ip(x[i]))/2.
+    Ip += ((x[i+1]-x[i]))/2.*(f_Ip(x[i+1])+f_Ip(x[i]))
 
 P = Cp * Ip
 
-print 'Potencia por unidad de area = ', P
+print 'Flujo Total Emitido = ', P #Flujo total emitido
 
-error = np.fabs(Ft-P)
-print error
+'''
+Usando L= 4*pi*R^2*P
+'''
+R = np.sqrt(L/(4.*np.pi*P))
 
-
-
+print 'Radio del Sol = ', R
 
 
 
