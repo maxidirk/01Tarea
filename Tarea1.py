@@ -10,6 +10,7 @@ Maximiliano Dirk Vega Aguilera
 import numpy as np
 import matplotlib.pyplot as plt
 from astropy import constants as ac
+from astropy import units as au
 import scipy as sci
 
 #######################################################
@@ -34,37 +35,37 @@ plt.ylabel('Flujo por $\lambda$ $[erg \ s^{-1} cm^{-2} \AA^{-1}]$')
 plt.show()
 '''
 
-#Nota: El flujo es la integral de la Potencia en todo lambda (?)
 #######################################################
-#Parte de calcular la luminosidad
+
 '''
 Integral usando metodo del trapecio
 int f(x) dx = dx/2 * (f(xo) + f(xo + dx))
 en lo que sigue w1 es x y e1 es f(x)
 '''
+
 Ft = 0   #Flujo total a obtener
 
 for i in range(n-1):
     Ft += ( (w1[i+1]-w1[i]) / 2.) * (e1[i] + e1[i+1])
 
-print 'Flujo Total = ', Ft, '[erg s-1 cm-2]' #Flujo total en cgs
+print 'Flujo Total = ', Ft, '[erg s-1 cm-2]' #Flujo recibido total en cgs
 
-R = 1.5 * (10**13) # Distancia aproximada al Sol en cm
-L = 4. * np.pi * (R**2) * Ft  # Luminosidad total
+d = 1.5 * (10**13)   # Distancia aproximada al Sol en cm
+L = 4. * np.pi * (d**2) * Ft   # Luminosidad total
 
 print 'Luminosidad Total = ', L , '[erg s-1]'
 
 
-
-
-
-
-
 #######################################################
 #Parte funcion de Plank
+'''
+P=(2pih/c^2)*(KBT/h)^4 * int x^3/(e^x -1)
+'''
+T = 5778.*au.K #Temperatura del Sol [K]
+Cp = ((2.*np.pi*ac.h.cgs)/(ac.c.cgs**2)) * (((ac.k_B.cgs*T)/ac.h.cgs)**4) #Termino cte de P
+Ip = 0 #Termino integral de P
 
-
-
+print Cp
 
 
 #######################################################
