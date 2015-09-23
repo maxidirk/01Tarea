@@ -48,12 +48,13 @@ Ft = 0   #Flujo total a obtener
 for i in range(n-1):
     Ft += ( (w1[i+1]-w1[i]) / 2.) * (e1[i] + e1[i+1])
 
-print 'Flujo Total = ', Ft, '[erg s-1 cm-2]' #Flujo recibido total en cgs
+Ft = Ft * au.erg / (au.s*(au.cm**2))
+print 'Flujo Total = ', Ft #Flujo recibido total en cgs
 
 d = 1.5 * (10**13)   # Distancia aproximada al Sol en cm
-L = 4. * np.pi * (d**2) * Ft   # Luminosidad total
+L = 4. * np.pi * (d**2) * Ft   # Luminosidad total en cgs
 
-print 'Luminosidad Total = ', L , '[erg s-1]'
+print 'Luminosidad Total = ', L
 
 
 #######################################################
@@ -63,33 +64,33 @@ P=(2pih/c^2)*(KBT/h)^4 * int x^3/(e^x -1)
 '''
 T = 5778.*au.K #Temperatura del Sol [K]
 Cp = ((2.*np.pi*ac.h.cgs)/(ac.c.cgs**2)) * (((ac.k_B.cgs*T)/ac.h.cgs)**4) #Termino cte de P
-#Ip = 0 #Termino integral de P
+Ip = 0 #Termino integral de P
 
 '''
 con el cambio de variable x=tan(x) => dx=sec(x)^2
 usando el metodo del trapecio
 se puede intergrar la funcion:
 tan(x)^3/( exp( tan(x) ) -1 ) * 1/cos(x)^2
-entre
+entre 0 y pi/2
 '''
 
 def f_Ip (x):
     return (np.tan(x)**3/(np.exp(np.tan(x))-1)) *(1/(np.cos(x)**2))
 
-tol = 0.001
-paso= 0.001
-x = np.arange(tol , np.pi/2. -tol  , paso)
-Ip = 0
+tol = 0.001   #Cuanto quiero acercarme al limite
+paso= 0.001   #Tamanho de los intervalos a sumar
+x = np.arange(tol , np.pi/2. -tol  , paso) #arreglo con los argumentos a usar
+
 for i in range(len(x)-1):
     Ip += ((x[i+1]-x[i]))*(f_Ip(x[i+1])+f_Ip(x[i]))/2.
 
 P = Cp * Ip
-real= (np.pi**4)/15.
-Pr = Cp*real
-print Ip
-print real
-print P
-print Pr
+
+print 'Potencia por unidad de area = ', P
+
+error = np.fabs(Ft-P)
+print error
+
 
 
 
