@@ -61,10 +61,12 @@ print 'Luminosidad Total = ', L
 
 
 #######################################################
-#Parte funcion de Plank
+
 '''
+Flujo emitido a partir de la ecuacion de Plank
 P=(2pih/c^2)*(KBT/h)^4 * int x^3/(e^x -1)
 '''
+
 T = 5778.*au.K #Temperatura del Sol [K]
 Cp = ((2.*np.pi*ac.h.cgs)/(ac.c.cgs**2)) * (((ac.k_B.cgs*T)/ac.h.cgs)**4) #Termino cte de P
 Ip = 0 #Termino integral de P
@@ -77,35 +79,44 @@ tan(x)^3/( exp( tan(x) ) -1 ) * 1/cos(x)^2
 entre 0 y pi/2
 '''
 
-def f_Ip (x):
+def f_Ip (x):  #Se define la funcion a integrar
     return (np.tan(x)**3/(np.exp(np.tan(x))-1)) *(1/(np.cos(x)**2))
 
 tol = 0.001   #Cuanto quiero acercarme al limite
 paso= 0.001   #Tamanho de los intervalos a sumar
 x = np.arange(tol , np.pi/2. -tol  , paso) #arreglo con los argumentos a usar
 
-for i in range(len(x)-1):
+for i in range(len(x)-1):   #Se calcula la integral
     Ip += ((x[i+1]-x[i]))/2.*(f_Ip(x[i+1])+f_Ip(x[i]))
 
-P = Cp * Ip
+P = Cp * Ip  #Flujo Total Emitido
 
 print 'Flujo Total Emitido = ', P #Flujo total emitido
 
 '''
 Usando L= 4*pi*R^2*P
 '''
-R = np.sqrt(L/(4.*np.pi*P))
+R = np.sqrt(L/(4.*np.pi*P)) #Radio del Sol obtenido a partir de l y P calulados
 
-print 'Radio del Sol = ', R
+print 'Radio del Sol = ', R #Radio del Sol
 
 #######################################################
-#scipy.integrate.trapz y scipy.integrate.quad
 
-f_Ipx2 = lambda x: (x**3/(np.exp(x)-1))
+'''
+A continuacion se calculan las integrales calculadas anteriormente usando
+los metodos de integracion predefinidos en scipy
+'''
 
-Ft_sci_trapz = sciI.trapz(e1, x=w1) * au.erg / (au.s*(au.cm**2))
-fiP_sci_trapz = Cp*sciI.quad(f_Ipx2, 0, 100)[0]
+f_Ipx2 = lambda x: (x**3/(np.exp(x)-1)) #no se usa la version x=tan(x) porque tira un error
+
+Ft_sci_trapz = sciI.trapz(e1, x=w1) * au.erg / (au.s*(au.cm**2)) #Primera integral
+
+fiP_sci_quad = Cp * sciI.quad(f_Ipx2, 0, 100)[0]  #Segunda integral * termino constante
+
 
 print 'Flujo Recibido Calculado por scipy = ', Ft_sci_trapz
 
-print 'Flujo Emitido Calculado por scipy = ', fiP_sci_trapz
+print 'Flujo Emitido Calculado por scipy = ', fiP_sci_quad
+
+
+#######################################################
