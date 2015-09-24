@@ -25,7 +25,7 @@ e = a[:,1]          # obtiene e de a
 
 w1 = 10. * w          # w1 = Wavelength (Angstrom)
 e1 = e * ((10 ** (7)) * (10. ** (-4.)) * (10 ** (-1)))  # e1 = Power (erg*s-1*cm-2*A-1)
-'''
+
 plt.xscale('log')
 plt.yscale('log')
 plt.plot(w1,e1)
@@ -33,7 +33,7 @@ plt.title('Flujo por $\lambda$ vs $\lambda$ en escala Log-Log')
 plt.xlabel('Longitud de Onda ($\lambda$) $[\AA]$')
 plt.ylabel('Flujo por $\lambda$ $[erg \ s^{-1} cm^{-2} \AA^{-1}]$')
 plt.show()
-'''
+
 
 #######################################################
 
