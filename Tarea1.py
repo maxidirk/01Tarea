@@ -89,6 +89,10 @@ x = np.arange(tol , np.pi/2. -tol  , paso) #arreglo con los argumentos a usar
 for i in range(len(x)-1):   #Se calcula la integral
     Ip += ((x[i+1]-x[i]))/2.*(f_Ip(x[i+1])+f_Ip(x[i]))
 
+Ipa = (np.pi**4)/15.  #valor de la integral obtenido analiticamente
+
+print 'Diferencia entre valor numerico y analitico = ', Ip - Ipa
+
 P = Cp * Ip  #Flujo Total Emitido
 
 print 'Flujo Total Emitido = ', P #Flujo total emitido
