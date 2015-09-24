@@ -45,10 +45,10 @@ en lo que sigue w1 es x y e1 es f(x)
 
 Ft = 0   #Flujo total a obtener
 
-for i in range(n-1):
+for i in range(n-1):  #Se calcula la integral
     Ft += ( (w1[i+1]-w1[i]) / 2.) * (e1[i] + e1[i+1])
 
-Ft = Ft * au.erg / (au.s*(au.cm**2))
+Ft = Ft * au.erg / (au.s*(au.cm**2))   #Se agregan las unidades
 print 'Flujo Total Recibido= ', Ft #Flujo recibido total en cgs
 
 '''
@@ -118,5 +118,26 @@ print 'Flujo Recibido Calculado por scipy = ', Ft_sci_trapz
 
 print 'Flujo Emitido Calculado por scipy = ', fiP_sci_quad
 
+#Diferencia entre lo calculado por mi y el calculado por scipy
+dFr = Ft - Ft_sci_trapz   #Diferencia de flujo recibido
+dFe = P - fiP_sci_quad   #Diferencia de flujo emitido
+
+print 'Diferencia de Flujo Recibido = ', dFr
+print 'Diferencia de Flujo Emitido = ', dFe
+
+#######################################################
+
+'''
+Velocidad de ejecucion obtenida con timeit:
+
+Flujo Recibido Mio =
+
+Flujo Recibido scipy = 1000 loops, best of 3: 324 micros per loop
+
+Flujo Emitido Mio =
+
+Flujo Emitido scipy = 100 loops, best of 3: 4.07 ms per loop
+
+'''
 
 #######################################################
