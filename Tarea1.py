@@ -17,7 +17,7 @@ from scipy import integrate as sciI
 
 a=np.loadtxt('sun_AM0.dat')  # Se abre el archivo
 
-n = len(a)
+n = len(a)          # numero de puntos 
 w = np.zeros(n)     # w = Wavelength (nm)
 e = np.zeros(n)     # e = Power (W*m-2*nm-1)
 w = a[:,0]          # obtiene w de a
